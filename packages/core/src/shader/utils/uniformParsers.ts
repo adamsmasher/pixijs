@@ -41,7 +41,7 @@ export const uniformParsers: IUniformParser[] = [
     {
         test: (data: any): boolean =>
             // eslint-disable-next-line max-len
-            (data.type === 'sampler2D' || data.type === 'samplerCube' || data.type === 'sampler2DArray') && data.size === 1 && !data.isArray,
+            (data.type === 'sampler2D' || data.type === 'samplerCube' || data.type === 'sampler2DArray' || data.type === 'sampler3D') && data.size === 1 && !data.isArray,
         code: (name: string): string => `t = syncData.textureCount++;
 
             renderer.texture.bind(uv["${name}"], t);

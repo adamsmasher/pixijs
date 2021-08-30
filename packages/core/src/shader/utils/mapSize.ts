@@ -26,6 +26,7 @@ const GLSL_TO_SIZE: Dict<number> = {
     mat4:     16,
 
     sampler2D:  1,
+    sampler3D:  1,
 };
 
 /**

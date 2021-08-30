@@ -207,6 +207,7 @@ export enum FORMATS {
  * @property {number} TEXTURE_CUBE_MAP_NEGATIVE_Y=34072
  * @property {number} TEXTURE_CUBE_MAP_POSITIVE_Z=34073
  * @property {number} TEXTURE_CUBE_MAP_NEGATIVE_Z=34074
+ * @property {number} TEXTURE_3D=32879
  */
 export enum TARGETS {
     TEXTURE_2D = 3553,
@@ -218,6 +219,7 @@ export enum TARGETS {
     TEXTURE_CUBE_MAP_NEGATIVE_Y = 34072,
     TEXTURE_CUBE_MAP_POSITIVE_Z = 34073,
     TEXTURE_CUBE_MAP_NEGATIVE_Z = 34074,
+    TEXTURE_3D = 32879,
 }
 
 /**

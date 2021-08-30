@@ -36,6 +36,7 @@ const GL_TO_GLSL_TYPES: Dict<string> = {
     SAMPLER_2D_ARRAY:              'sampler2DArray',
     INT_SAMPLER_2D_ARRAY:          'sampler2DArray',
     UNSIGNED_INT_SAMPLER_2D_ARRAY: 'sampler2DArray',
+    SAMPLER_3D: 'sampler3D',
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

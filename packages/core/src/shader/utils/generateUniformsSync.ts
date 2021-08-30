@@ -61,6 +61,7 @@ const GLSL_TO_SINGLE_SETTERS_CACHED: Dict<string> = {
     sampler2D:      'gl.uniform1i(location, v)',
     samplerCube:    'gl.uniform1i(location, v)',
     sampler2DArray: 'gl.uniform1i(location, v)',
+    sampler3D:      'gl.uniform1i(location, v)',
 };
 
 const GLSL_TO_ARRAY_SETTERS: Dict<string> = {
@@ -93,6 +94,7 @@ const GLSL_TO_ARRAY_SETTERS: Dict<string> = {
     sampler2D:      'gl.uniform1iv(location, v)',
     samplerCube:    'gl.uniform1iv(location, v)',
     sampler2DArray: 'gl.uniform1iv(location, v)',
+    sampler3D:      'gl.uniform1iv(location, v)',
 };
 
 export function generateUniformsSync(group: UniformGroup, uniformData: Dict<any>): UniformsSyncCallback

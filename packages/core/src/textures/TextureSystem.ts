@@ -2,7 +2,7 @@ import { mapTypeAndFormatToInternalFormat } from './utils/mapTypeAndFormatToInte
 import { BaseTexture } from './BaseTexture';
 import { GLTexture } from './GLTexture';
 import { removeItems } from '@pixi/utils';
-import { MIPMAP_MODES, WRAP_MODES, SCALE_MODES, TYPES, SAMPLER_TYPES } from '@pixi/constants';
+import { MIPMAP_MODES, WRAP_MODES, SCALE_MODES, TYPES, SAMPLER_TYPES, TARGETS } from '@pixi/constants';
 
 import type { ISystem } from '../ISystem';
 import type { Texture } from './Texture';
@@ -122,6 +122,13 @@ export class TextureSystem implements ISystem
         gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
 
+        const emptyTexture3D = new GLTexture(gl.createTexture());
+
+        gl.bindTexture(gl.TEXTURE_3D, emptyTexture3D.texture);
+        gl.texImage3D(gl.TEXTURE_3D, 0, gl.RGBA, 1, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4));
+
+        this.emptyTextures[gl.TEXTURE_3D] = emptyTexture3D;
+
         for (let i = 0; i < this.boundTextures.length; i++)
         {
             this.bind(null, i);
@@ -181,7 +188,11 @@ export class TextureSystem implements ISystem
                 gl.activeTexture(gl.TEXTURE0 + location);
             }
 
-            gl.bindTexture(gl.TEXTURE_2D, this.emptyTextures[gl.TEXTURE_2D].texture);
+            if (texture && texture.target === TARGETS.TEXTURE_3D) {
+                gl.bindTexture(gl.TEXTURE_3D, this.emptyTextures[gl.TEXTURE_3D].texture);
+            } else {
+                gl.bindTexture(gl.TEXTURE_2D, this.emptyTextures[gl.TEXTURE_2D].texture);
+            }
             this.boundTextures[location] = null;
         }
     }
